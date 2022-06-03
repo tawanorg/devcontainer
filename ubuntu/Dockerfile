@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV SHELLCHECK_VERSION=0.7.0
 # Pick a Ubuntu apt mirror site for better speed
 # ref: https://launchpad.net/ubuntu/+archivemirrors
-ENV UBUNTU_APT_SITE ubuntu.cs.utah.edu
+ENV UBUNTU_APT_SITE mirrors.nipa.cloud
 
 # Disable src package source
 RUN sed -i 's/^deb-src\ /\#deb-src\ /g' /etc/apt/sources.list
@@ -87,11 +87,11 @@ RUN \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# RUN wget https://github.com/koalaman/shellcheck/releases/download/v$SHELLCHECK_VERSION/shellcheck-v$SHELLCHECK_VERSION.linux.x86_64.tar.xz -O- | \
-#     tar xJvf - shellcheck-v$SHELLCHECK_VERSION/shellcheck          && \
-#     mv shellcheck-v$SHELLCHECK_VERSION/shellcheck /bin             && \
-#     rmdir shellcheck-v$SHELLCHECK_VERSION
-# RUN shellcheck -V
+RUN wget https://github.com/koalaman/shellcheck/releases/download/v$SHELLCHECK_VERSION/shellcheck-v$SHELLCHECK_VERSION.linux.x86_64.tar.xz -O- | \
+    tar xJvf - shellcheck-v$SHELLCHECK_VERSION/shellcheck          && \
+    mv shellcheck-v$SHELLCHECK_VERSION/shellcheck /bin             && \
+    rmdir shellcheck-v$SHELLCHECK_VERSION
+RUN shellcheck -V
 
 # Set locale
 RUN locale-gen en_US.UTF-8
