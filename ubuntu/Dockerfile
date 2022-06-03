@@ -126,6 +126,4 @@ RUN source $HOME/.nvm/nvm.sh && \
 
 RUN echo 'export PATH="$PATH:$(yarn global bin)"'
 
-SHELL ["/bin/bash", "--login", "-c"]
-
 CMD [ "/bin/bash" ]
