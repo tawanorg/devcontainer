@@ -2,10 +2,9 @@ FROM ubuntu:18.04
 
 LABEL maintainer="Tew Tawan <tew@tawan.org>"
 
-# Replace shell with bash so we can source files
-# Set the SHELL to bash with pipefail option
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+SHELL ["/bin/bash", "-c"]
 
 ENV NODE_VERSION v14
 # Prevent dialog during apt install
